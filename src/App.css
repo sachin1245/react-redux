@@ -1,22 +1,31 @@
+
+
 .App {
-  text-align: center;
+  padding: 50px;
 }
 
-.App-logo {
-  height: 40vmin;
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Todo-App {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /* align-items: center; */
+  /* justify-content: center; */
 }
 
-.App-link {
-  color: #09d3ac;
+form{
+  display: block;
+}
+
+input {
+  padding: 10px;
+  border-radius: 3px;
+  outline: none;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
 }

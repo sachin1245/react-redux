@@ -1,24 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import TodoForm from './components/TodoForm';
+import TodoList from './components/TodoList';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <div className="Todo-App">
+          <TodoForm 
+          changeCurrent={props.changeCurrent}
+          currentTodo={props.currentTodo} />
+          <TodoList todos={props.todos}></TodoList>
+        </div>
     </div>
   );
 }
