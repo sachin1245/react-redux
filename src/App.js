@@ -1,16 +1,27 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
+// import {connect} from 'react-redux';
 import './App.css';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
+import Message from './components/Message';
+import Footer from './components/Footer';
 
 function App(props) {
   return (
     <div className="App">
+      <Router>
         <div className="Todo-App">
-          <TodoForm />
-          <TodoList />
+            <Message />
+            <TodoForm />
+
+            <Route path='/:filter?' render={({match}) => (
+              <TodoList filter={match.params.filter}/>
+            )}/>
+            <Footer />
         </div>
+      </Router>
+        
     </div>
   );
 }

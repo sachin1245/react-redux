@@ -1,23 +1,44 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { fetchTodos, toggleTodo, deleteTodo, getVisibleTodos } from '../reducers/todo';
 
-const TodoItem = ({name, isCompleted}) => (
+const TodoItem = ({id, name, isCompleted, toggleTodo, deleteTodo}) => (
     <li>
-        <input type="checkbox" defaultChecked={isCompleted}/>
+
+         <span className="delete-item">
+            <button onClick={() => deleteTodo(id)}>X</button>
+        </span>
+        <input type="checkbox" 
+        defaultChecked={isCompleted}
+        onChange={() => toggleTodo(id)}/>
         {name}
     </li>
 )
 
-const TodoList = (props) => {
-    return (
-        <div className="Todo-List">
-            <ul>
-                {props.todos.map(todo => ( <TodoItem key={todo.id} {...todo} />))}
-            </ul>
-        </div>
-    )
+class TodoList extends Component {
+
+    componentDidMount() {
+        this.props.fetchTodos();
+    }
+
+    render() {
+        return (
+            <div className="Todo-List">
+                <ul>
+                    {this.props.todos.map(todo => ( 
+                        <TodoItem 
+                            key={todo.id} 
+                            toggleTodo={this.props.toggleTodo}
+                            deleteTodo={this.props.deleteTodo} 
+                            {...todo} />
+                    ))}
+                </ul>
+            </div>
+        )
+    }
 }
 
 export default connect(
-    (state) => ({todos: state.todos})
+    (state, ownProps) => ({todos: getVisibleTodos(state.todo.todos, ownProps.filter )}),
+    {fetchTodos, toggleTodo, deleteTodo}
 )(TodoList)
