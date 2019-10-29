@@ -1,0 +1,9 @@
+{
+    "todos": [
+        {"id":1, "name": "configure store", "isCompleted": true},
+        {"id":1, "name": "Start server", "isCompleted": false},
+        {"id":1, "name": "Load data from server", "isCompleted": false},
+        {"id":1, "name": "Add record", "isCompleted": false},
+        {"id":1, "name": "Update record", "isCompleted": false}
+    ]
+}
